@@ -1,13 +1,3 @@
-# Jekyll build output and caches
-_site/
-.sass-cache/
-.jekyll-cache/
-.jekyll-metadata
-
-# Bundler
-/vendor
-.bundle/
-
-# GitHub Pages builds with its own pages-gem and ignores this file
-# https://github.com/github/pages-gem/issues/768
-Gemfile.lock
+# Node / Vite
+node_modules/
+dist/
