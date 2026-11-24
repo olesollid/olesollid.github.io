@@ -14,15 +14,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: 'simple-lms',
-    description: "simple-lms is a learning management system where teachers create courses with modules, quizzes and assignments, and students complete them and track their grades. It's built with multiple collaborators in Spring Boot and React/TypeScript, and includes GitHub/Google sign-in and an AI study tutor powered by Gemini.",
-    tags: ['Java', 'Spring', 'React', 'OAuth', 'AI'],
-    sourceUrl: 'https://github.com/olesollid/simple-lms',
-    images: [
-      { src: '', alt: '' },
-    ],
-  },
-  {
     title: 'soundcloud-dl',
     description: 'A desktop GUI application for downloading SoundCloud tracks and playlists as high-quality AIFF files with embedded metadata and cover art.',
     tags: ['Python', 'PyQt6'],
@@ -30,6 +21,15 @@ export const projects: Project[] = [
     images: [
       { src: './images/scdl-1.webp', alt: 'Overview of soundcloud-dl downloader GUI' },
       { src: './images/scdl-2.webp', alt: 'Overview of settings' },
+    ],
+  },
+  {
+    title: 'simple-lms',
+    description: "simple-lms is a learning management system where teachers create courses with modules, quizzes and assignments, and students complete them and track their grades. It's built with multiple collaborators in Spring Boot and React/TypeScript, and includes GitHub/Google sign-in and an AI study tutor powered by Gemini.",
+    tags: ['Java', 'Spring', 'React', 'OAuth', 'AI'],
+    sourceUrl: 'https://github.com/olesollid/simple-lms',
+    images: [
+      { src: '', alt: '' },
     ],
   },
 ];

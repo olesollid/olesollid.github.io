@@ -96,7 +96,9 @@
 
   {#if images.length > 1}
     <div class="controls">
-    <button class="nav prev" onclick={() => go(index - 1)} aria-label="Previous image">‹</button>
+    <button class="nav prev" onclick={() => go(index - 1)} aria-label="Previous image">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+    </button>
     <div class="dots">
       {#each images as _, i}
         <button
@@ -107,7 +109,9 @@
         ></button>
       {/each}
     </div>
-    <button class="nav next" onclick={() => go(index + 1)} aria-label="Next image">›</button>
+    <button class="nav next" onclick={() => go(index + 1)} aria-label="Next image">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+    </button>
     </div>
   {/if}
 </div>
@@ -159,11 +163,21 @@
     border: 0;
     background: rgb(255 255 255 / 0.85);
     color: #111;
-    font-size: 1.3rem;
-    line-height: 1;
+    padding: 0;
+    display: grid;
+    place-items: center;
     cursor: pointer;
     transition: transform 0.2s;
     backdrop-filter: blur(6px);
+  }
+  .nav svg {
+    width: 1.1rem;
+    height: 1.1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
   .nav:hover { transform: scale(1.08); }
 

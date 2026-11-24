@@ -14,14 +14,14 @@ export const experience: Job[] = [
   {
     type: 'work',
     role: 'Senior Consultant',
-    company: 'Sikt - Norwegian Agency for Shared Services in Education and Research',
+    company: 'Sikt – Norwegian Agency for Shared Services in Education and Research',
     companyUrl: 'https://www.sikt.no/en',
     start: '2025-06',
     end: 'Present',
-    summary: "Internship in the summers of 2025 and 2026, now part-time alongside my studies. I handle internal IT support and troubleshooting, PowerShell scripting, and managing endpoints and users with Intune and Azure.",
+    summary: "Internship in the summers of 2025 and 2026, now part-time alongside my studies. I handle internal IT support, troubleshooting and hardware, and manage endpoints and users with Intune and Microsoft 365.",
     highlights: ["Built a RAG agent that lets employees search internal documentation in natural language.",
-    "When it couldn't solve a problem, it summarized the conversation and prefilled an inquiry to the helpdesk, so no one has to explain their issue twice.",],
-    tags: ['Microsoft 365', 'Azure', 'PowerShell', 'Hardware'],
+    "When it couldn't solve a problem, it summarized the conversation and prefilled a helpdesk ticket, so no one had to explain their issue twice.",],
+    tags: ['Microsoft 365', 'Azure', 'Hardware', 'Intune', 'RAG'],
   },
   {
     type: 'work',
@@ -30,7 +30,7 @@ export const experience: Job[] = [
     //companyUrl: 'https://www.uib.no/en/faculty-of-science-and-technology/the-department-of-informatics',
     start: '2026-01',
     end: 'Present',
-    summary: 'Group leader for students, which involves planning and conducting group sessions, providing academic guidance to students, and grading and evaluating assignments.',
+    summary: 'Group leader responsible for planning and running group sessions, giving academic guidance, and grading assignments.',
     highlights: ['Spring 2026: INF142 Computer Networks', 'Autumn 2026: INF105 Independent Computer Technology'],
     tags: ['JavaScript', 'CSS', 'HTML', 'Python', 'Virtual Machines', 'Networking'],
   },
@@ -42,7 +42,7 @@ export const experience: Job[] = [
     company: 'Integrerbar',
     start: '2022-08',
     end: '2024-06',
-    summary: 'Volunteer with a term as board member for the student bar at the Science and Technology Faculty at University of Bergen.',
+    summary: 'Volunteer with a term as board member for the student bar at the Faculty of Science and Technology, University of Bergen.'
   },
     {
     type: 'volunteering',
@@ -50,15 +50,15 @@ export const experience: Job[] = [
     company: 'Faculty of Science and Technology, University of Bergen',
     start: '2024-12',
     end: '2025-09',
-    summary: 'Managed acquisition and relations between the welcome week committee and sponsors.',
+    summary: 'Managed sponsor acquisition and relations for the yearly welcome week for new students.',
   },
     {
     type: 'volunteering',
-    role: 'Innovation Lead',
-    company: 'Valens - student committee for chemistry students at University of Bergen',
+    role: 'Head of Innovation',
+    company: 'Valens – student committee for chemistry students at University of Bergen',
     start: '2022-09',
     end: '2023-09',
-    summary: 'Took part in a project with the goal of recirculating plastic waste into 3D-printer filament.',
+    summary: 'As head of innovation, I led a project to recirculate plastic waste into usable 3D-printer filament.',
   },
 
   // Education
