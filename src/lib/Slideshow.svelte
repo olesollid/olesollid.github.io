@@ -1,10 +1,22 @@
 <script lang="ts">
-  import { fade } from 'svelte/transition';
-
   let { images, label }: { images: { src: string; alt: string }[]; label: string } = $props();
 
   let index = $state(0);
+  let root: HTMLDivElement;
   let startX = 0;
+  let dragging = $state(false);
+  let dragX = $state(0);
+  let lastWheel = 0;
+
+  // Preload all images
+  $effect(() => {
+    for (const { src } of images) {
+      if (!src) continue;
+      const img = new Image();
+      img.src = src;
+      img.decode?.().catch(() => {});
+    }
+  });
 
   const go = (i: number) => (index = (i + images.length) % images.length);
 
@@ -12,10 +24,42 @@
     if (e.key === 'ArrowLeft') go(index - 1);
     if (e.key === 'ArrowRight') go(index + 1);
   }
-  function onTouchEnd(e: TouchEvent) {
-    const dx = e.changedTouches[0].clientX - startX;
-    if (Math.abs(dx) > 40) go(index + (dx < 0 ? 1 : -1));
+
+  // Make images draggable.
+  function onPointerDown(e: PointerEvent) {
+    if (images.length < 2 || (e.target as HTMLElement).closest('button')) return;
+    startX = e.clientX;
+    dragging = true;
   }
+  function onPointerMove(e: PointerEvent) {
+    if (!dragging) return;
+    const dx = e.clientX - startX;
+    if (Math.abs(dx) > 6) root.setPointerCapture(e.pointerId);
+    // Loop at first/last image.
+    const atEdge = (index === 0 && dx > 0) || (index === images.length - 1 && dx < 0);
+    dragX = atEdge ? dx * 0.3 : dx;
+  }
+  function endDrag(e: PointerEvent, cancelled = false) {
+    if (!dragging) return;
+    dragging = false;
+    const dx = e.clientX - startX;
+    dragX = 0;
+    if (!cancelled && Math.abs(dx) > 40) go(index + (dx < 0 ? 1 : -1));
+  }
+
+  // Sideways scroll
+  $effect(() => {
+    const onWheel = (e: WheelEvent) => {
+      if (images.length < 2 || Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+      e.preventDefault();
+      const now = performance.now();
+      if (Math.abs(e.deltaX) < 8 || now - lastWheel < 450) return;
+      lastWheel = now;
+      go(index + (e.deltaX > 0 ? 1 : -1));
+    };
+    root.addEventListener('wheel', onWheel, { passive: false });
+    return () => root.removeEventListener('wheel', onWheel);
+  });
 </script>
 
 <!-- svelte-ignore a11y_no_noninteractive_tabindex, a11y_no_noninteractive_element_interactions -->
@@ -25,24 +69,29 @@
   aria-roledescription="carousel"
   aria-label="{label} screenshots"
   tabindex="0"
+  bind:this={root}
   onkeydown={onKey}
-  ontouchstart={(e) => (startX = e.touches[0].clientX)}
-  ontouchend={onTouchEnd}
+  onpointerdown={onPointerDown}
+  onpointermove={onPointerMove}
+  onpointerup={endDrag}
+  onpointercancel={(e) => endDrag(e, true)}
 >
   <div class="frame">
-    {#key index}
-      {#if images[index].src}
-        <img
-          src={images[index].src}
-          alt={images[index].alt}
-          in:fade={{ duration: 350 }}
-          out:fade={{ duration: 350 }}
-          draggable="false"
-        />
-      {:else}
-        <div class="placeholder">Pictures coming soon</div>
-      {/if}
-    {/key}
+    <div
+      class="track"
+      class:dragging
+      style="transform: translateX(calc({-index * 100}% + {dragX}px))"
+    >
+      {#each images as image, i}
+        <div class="slide" aria-hidden={i !== index}>
+          {#if image.src}
+            <img src={image.src} alt={image.alt} draggable="false" />
+          {:else}
+            <div class="placeholder">Pictures coming soon</div>
+          {/if}
+        </div>
+      {/each}
+    </div>
   </div>
 
   {#if images.length > 1}
@@ -71,9 +120,20 @@
     background: var(--bg-soft);
     border: 1px solid var(--border);
     box-shadow: 0 20px 40px -24px rgb(0 0 0 / 0.35);
+    touch-action: pan-y;
+    user-select: none;
+    cursor: grab;
   }
-  .frame { position: relative; aspect-ratio: 16 / 10; }
-  img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .frame { position: relative; aspect-ratio: 16 / 10; overflow: hidden; }
+  .track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  .track.dragging { transition: none; }
+  .slide { position: relative; flex: 0 0 100%; height: 100%; }
+  img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  @media (prefers-reduced-motion: reduce) { .track { transition: none; } }
 
   .controls {
     position: absolute;

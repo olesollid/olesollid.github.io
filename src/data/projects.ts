@@ -19,7 +19,7 @@ export const projects: Project[] = [
     tags: ['Java', 'Spring', 'React', 'OAuth', 'AI'],
     sourceUrl: 'https://github.com/olesollid/simple-lms',
     images: [
-      { src: '', alt: 'Pictures coming soon' },
+      { src: '', alt: '' },
     ],
   },
   {
