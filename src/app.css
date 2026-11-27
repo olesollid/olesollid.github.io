@@ -81,6 +81,7 @@ img { display: block; max-width: 100%; }
 .btn:hover { transform: translateY(-1px); opacity: 0.88; }
 .btn.ghost { background: transparent; color: var(--text); border-color: var(--border); }
 .btn.ghost:hover { border-color: var(--text); opacity: 1; }
+.btn.accent { background: var(--accent); border-color: var(--accent); color: var(--bg); }
 
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 

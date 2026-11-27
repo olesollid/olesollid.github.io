@@ -28,9 +28,17 @@
                 View source
               </a>
               {#if project.liveUrl}
-                <a class="btn ghost" href={project.liveUrl} target="_blank" rel="noopener noreferrer">Live demo</a>
+                {#if project.liveKind === 'download'}
+                  <a class="btn accent" href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
+                    {project.liveLabel ?? 'Download'}
+                  </a>
+                {:else}
+                  <a class="btn ghost" href={project.liveUrl} target="_blank" rel="noopener noreferrer">{project.liveLabel ?? 'Live demo'}</a>
+                {/if}
               {/if}
             </p>
+            {#if project.liveNote}<p class="note">{project.liveNote}</p>{/if}
           </div>
         </article>
       {/each}
@@ -48,6 +56,7 @@
   .desc { color: var(--muted); }
   .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1.25rem 0; }
   .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .note { margin-top: 0.6rem; font-size: 0.8rem; color: var(--muted); }
   @media (max-width: 860px) {
     article, article:nth-child(even) { grid-template-columns: 1fr; gap: 1.5rem; }
     article:nth-child(even) :global(.media) { order: 0; }

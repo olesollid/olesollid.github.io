@@ -27,6 +27,9 @@ export interface Project {
   tags: string[];
   sourceUrl: string;
   liveUrl?: string; // optional second button
+  liveLabel?: string; // text for the second button, default "Live demo"
+  liveKind?: 'demo' | 'download'; // 'download' gets the accent color and download icon
+  liveNote?: string; // note shown under buttons
   icon?: string; // optional app icon shown alongside title
   images?: { src: string; alt: string }[]; // slideshow, used when there is no video
   video?: ProjectVideo; // autoplaying demo

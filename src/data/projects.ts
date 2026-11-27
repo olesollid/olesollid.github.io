@@ -6,6 +6,10 @@ export const projects: Project[] = [
     description: "A minimal macOS menu bar app that lets you quickly change your screen arrangement with a single click. It's designed to make switching display layouts fast and effortless, without opening System Settings.",
     tags: ['Swift', 'AppKit'],
     sourceUrl: 'https://github.com/olesollid/DisplayArranger',
+    liveUrl: 'https://github.com/olesollid/DisplayArranger/releases/latest',
+    liveLabel: 'Download for macOS',
+    liveKind: 'download',
+    liveNote: 'Free · Not notarized, see the release notes for first-launch steps',
     icon: './images/dp-icon.webp',
     video: {
       webm: './video/displayarranger-demo.webm',
