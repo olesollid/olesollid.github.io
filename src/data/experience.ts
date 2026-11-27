@@ -31,7 +31,7 @@ export const experience: Job[] = [
     start: '2026-01',
     end: 'Present',
     summary: 'Group leader responsible for planning and running group sessions, giving academic guidance, and grading assignments.',
-    highlights: ['Spring 2026: INF142 Computer Networks', 'Autumn 2026: INF105 Independent Computer Technology'],
+    highlights: ['Autumn 2026: INF105 Independent Computer Technology', 'Spring 2026: INF142 Computer Networks'],
     tags: ['JavaScript', 'CSS', 'HTML', 'Python', 'Virtual Machines', 'Networking'],
   },
 
