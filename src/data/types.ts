@@ -28,5 +28,13 @@ export interface Project {
   sourceUrl: string;
   liveUrl?: string; // optional second button
   icon?: string; // optional app icon shown alongside title
-  images: { src: string; alt: string }[];
+  images?: { src: string; alt: string }[]; // slideshow, used when there is no video
+  video?: ProjectVideo; // autoplaying demo
+}
+
+export interface ProjectVideo {
+  webm: string; // supporting browsers get the smaller AV1 file
+  mp4: string; // h264 fallback
+  poster: string;
+  alt: string;
 }

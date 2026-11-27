@@ -64,7 +64,7 @@
 
 <!-- svelte-ignore a11y_no_noninteractive_tabindex, a11y_no_noninteractive_element_interactions -->
 <div
-  class="slideshow"
+  class="slideshow media"
   role="group"
   aria-roledescription="carousel"
   aria-label="{label} screenshots"

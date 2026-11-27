@@ -7,11 +7,12 @@ export const projects: Project[] = [
     tags: ['Swift', 'AppKit'],
     sourceUrl: 'https://github.com/olesollid/DisplayArranger',
     icon: './images/dp-icon.webp',
-    images: [
-      { src: './images/displayarranger-1.webp', alt: 'DisplayArranger menu overview' },
-      { src: './images/displayarranger-2.webp', alt: 'DisplayArranger menu overview' },
-      { src: './images/displayarranger-3.webp', alt: 'DisplayArranger menu overview' },
-    ],
+    video: {
+      webm: './video/displayarranger-demo.webm',
+      mp4: './video/displayarranger-demo.mp4',
+      poster: './images/displayarranger-demo-poster.webm',
+      alt: 'Demo of DisplayArranger switching display arrangements from the menu bar',
+    },
   },
   {
     title: 'soundcloud-dl',

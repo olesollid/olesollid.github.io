@@ -1,6 +1,7 @@
 <script lang="ts">
   import { projects } from '../data/projects';
   import Slideshow from './Slideshow.svelte';
+  import ProjectVideo from './ProjectVideo.svelte';
 </script>
 
 <section id="projects" class="section">
@@ -9,7 +10,11 @@
     <div class="list">
       {#each projects as project}
         <article>
-          <Slideshow images={project.images} label={project.title} />
+          {#if project.video}
+            <ProjectVideo video={project.video} />
+          {:else}
+            <Slideshow images={project.images ?? []} label={project.title} />
+          {/if}
           <div class="info">
             <h3>
               {#if project.icon}<img class="icon" src={project.icon} alt="" width="32" height="32" />{/if}
@@ -37,7 +42,7 @@
   .list { display: grid; gap: 5rem; }
   article { display: grid; grid-template-columns: 1.4fr 1fr; gap: 3rem; align-items: center; }
   article:nth-child(even) { grid-template-columns: 1fr 1.4fr; }
-  article:nth-child(even) :global(.slideshow) { order: 2; }
+  article:nth-child(even) :global(.media) { order: 2; }
   h3 { font-size: 1.9rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.6rem; }
   .icon { width: 2.5rem; height: 2.5rem; border-radius: 22%; flex: none; }
   .desc { color: var(--muted); }
@@ -45,6 +50,6 @@
   .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
   @media (max-width: 860px) {
     article, article:nth-child(even) { grid-template-columns: 1fr; gap: 1.5rem; }
-    article:nth-child(even) :global(.slideshow) { order: 0; }
+    article:nth-child(even) :global(.media) { order: 0; }
   }
 </style>
