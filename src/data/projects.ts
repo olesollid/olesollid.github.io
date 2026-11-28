@@ -14,7 +14,7 @@ export const projects: Project[] = [
     video: {
       webm: './video/displayarranger-demo.webm',
       mp4: './video/displayarranger-demo.mp4',
-      poster: './images/displayarranger-demo-poster.webm',
+      poster: './images/displayarranger-demo-poster.webp',
       alt: 'Demo of DisplayArranger switching display arrangements from the menu bar',
     },
   },
