@@ -20,17 +20,31 @@
 
   let timer: ReturnType<typeof setTimeout>;
 
+  function applyTheme(next: 'dark' | 'light') {
+    theme = next;
+    document.documentElement.dataset.theme = next;
+    try {
+      localStorage.setItem('theme', next);
+    } catch {}
+  }
+
   function toggle() {
+    const next = theme === 'dark' ? 'light' : 'dark';
     const root = document.documentElement;
+
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return applyTheme(next); // reduced motion?? could never be me.
+
+    // cross-fade a snapshot of the whole page so everything changes in sync
+    if (document.startViewTransition) {
+      document.startViewTransition(() => applyTheme(next));
+      return;
+    }
+
+    // fallback for browsers without view transitions
     root.classList.add('theme-transition');
     clearTimeout(timer);
     timer = setTimeout(() => root.classList.remove('theme-transition'), 600);
-
-    theme = theme === 'dark' ? 'light' : 'dark';
-    root.dataset.theme = theme;
-    try {
-      localStorage.setItem('theme', theme);
-    } catch {}
+    applyTheme(next);
   }
 </script>
 
